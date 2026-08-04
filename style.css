@@ -732,17 +732,18 @@ section {
   background: transparent;
 }
 .order-opt.active {
-  border-color: var(--gold);
+  border-color: var(--cream);
   background: rgba(180, 137, 79, 0.09);
 }
 .order-opt .name {
   font-family: "Fraunces", serif;
   font-size: 1.05rem;
+  color: white;
 }
 .order-opt .p {
   font-family: "IBM Plex Mono", monospace;
   font-size: 12px;
-  color: var(--gold);
+  color: var(--cream);
   margin-top: 8px;
 }
 .qty-row {
