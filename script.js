@@ -365,7 +365,7 @@ document.getElementById("checkoutBtn").addEventListener("click", () => {
   const idleSpeed = (Math.PI * 2) / (30 * 60); // ~1 full turn every 30s at 60fps
 
   function wrapAngle(a) {
-    return ((a % (Math.PI * 2)) + Math.PI * 3) % (Math.PI * 2) - Math.PI;
+    return (((a % (Math.PI * 2)) + Math.PI * 3) % (Math.PI * 2)) - Math.PI;
   }
 
   function onPointer(clientX, clientY) {
@@ -375,11 +375,9 @@ document.getElementById("checkoutBtn").addEventListener("click", () => {
     targetX = ny * maxTilt;
     lastMoveAt = performance.now();
   }
-  window.addEventListener(
-    "mousemove",
-    (e) => onPointer(e.clientX, e.clientY),
-    { passive: true },
-  );
+  window.addEventListener("mousemove", (e) => onPointer(e.clientX, e.clientY), {
+    passive: true,
+  });
   window.addEventListener(
     "touchmove",
     (e) => {
