@@ -280,6 +280,9 @@ input:focus-visible {
 .hero-copy-right .hero-actions {
   justify-content: flex-end;
 }
+.hero-copy-left .hero-actions {
+  justify-content: center;
+}
 
 .btn {
   position: relative;
