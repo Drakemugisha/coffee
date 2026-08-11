@@ -78,16 +78,49 @@ document.getElementById("qtyMinus").addEventListener("click", () => {
   }
 });
 document.getElementById("checkoutBtn").addEventListener("click", () => {
-  alert(
-    "Thanks! Order summary:\n" +
-      document.querySelector(".order-opt.active .name").textContent +
-      "  x" +
-      qty +
-      "\nTotal: " +
-      fmt(price * qty) +
-      " UGX\n\n(Payment integration coming soon.)",
-  );
+  const productName = document.querySelector(".order-opt.active .name").textContent.trim();
+  const details = `${productName} x${qty}\nTotal: ${fmt(price * qty)} UGX\n\nPlease confirm availability and provide delivery details (name, address/location, preferred delivery time).\n\nThank you!`;
+  const modal = document.getElementById("checkoutModal");
+  if (modal) {
+    modal.querySelector(".order-summary").textContent = details;
+    modal.classList.add("open");
+  } else {
+    // fallback if modal not present
+    alert("Order:\n" + details);
+  }
 });
+
+// Modal actions: open WhatsApp or mailto with prefilled message
+const checkoutModal = document.getElementById("checkoutModal");
+if (checkoutModal) {
+  document.getElementById("checkoutWhatsapp").addEventListener("click", () => {
+    const productName = document.querySelector(".order-opt.active .name").textContent.trim();
+    const message = `${productName} x${qty}\nTotal: ${fmt(price * qty)} UGX\n\nPlease confirm availability and provide delivery details (name, address/location, preferred delivery time).\n\nThank you!`;
+    const waUrl = "https://wa.me/256761270901?text=" + encodeURIComponent(message);
+    window.open(waUrl, "_blank");
+    checkoutModal.classList.remove("open");
+  });
+
+  document.getElementById("checkoutEmail").addEventListener("click", () => {
+    const productName = document.querySelector(".order-opt.active .name").textContent.trim();
+    const subject = "Order from Coffee Esiimwe";
+    const body = `${productName} x${qty}\nTotal: ${fmt(price * qty)} UGX\n\nPlease confirm availability and provide delivery details (name, address/location, preferred delivery time).\n\nThank you!`;
+    const mailto = "mailto:coffeeesiimwe@gmail.com?subject=" + encodeURIComponent(subject) + "&body=" + encodeURIComponent(body);
+    window.location.href = mailto;
+    checkoutModal.classList.remove("open");
+  });
+
+  document.getElementById("checkoutCancel").addEventListener("click", () => {
+    checkoutModal.classList.remove("open");
+  });
+
+  // clicking overlay closes modal
+  checkoutModal.addEventListener("click", (e) => {
+    if (e.target.classList.contains("checkout-modal") || e.target.classList.contains("checkout-overlay")) {
+      checkoutModal.classList.remove("open");
+    }
+  });
+}
 
 /* ---------------- three.js realistic coffee bean ---------------- */
 (function () {

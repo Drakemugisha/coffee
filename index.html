@@ -251,7 +251,7 @@
               </div>
             </div>
             <div class="product-price">
-              <span class="amt">45,000</span><span class="cur">UGX</span>
+              <span class="amt">35,000</span><span class="cur">UGX</span>
             </div>
             <a href="#order" class="btn btn-dark">Add to Order</a>
           </div>
@@ -300,7 +300,7 @@
               </div>
             </div>
             <div class="product-price">
-              <span class="amt">28,000</span><span class="cur">UGX</span>
+              <span class="amt">20,000</span><span class="cur">UGX</span>
             </div>
             <a href="#order" class="btn btn-dark">Add to Order</a>
           </div>
@@ -379,19 +379,19 @@
           <div class="order-select" role="group" aria-label="Choose a product">
             <button
               class="order-opt active"
-              data-price="45000"
+              data-price="35000"
               data-name="Esiimwe Whole Roasted Bean — 500g Whole Bean"
             >
               <div class="name">Esiimwe Whole Roasted Bean</div>
-              <div class="p mono">500g Whole Bean · 45,000 UGX</div>
+              <div class="p mono">500g Whole Bean · 35,000 UGX</div>
             </button>
             <button
               class="order-opt"
-              data-price="28000"
+              data-price="20000"
               data-name="Esiimwe Ground — 250g Medium Ground"
             >
               <div class="name">Esiimwe Ground</div>
-              <div class="p mono">250g Medium Ground · 28,000 UGX</div>
+              <div class="p mono">250g Medium Ground · 20,000 UGX</div>
             </button>
           </div>
 
@@ -406,7 +406,7 @@
 
           <div class="order-total">
             <span class="qty-label">Total</span>
-            <span class="amt mono" id="orderTotal">45,000 UGX</span>
+            <span class="amt mono" id="orderTotal">35,000 UGX</span>
           </div>
 
           <button class="btn btn-primary" style="width: 100%" id="checkoutBtn">
@@ -444,7 +444,11 @@
               </svg>
               <div>
                 <div class="contact-label">Email</div>
-                <div class="contact-val">hello@esiimwe.coffee</div>
+                <div class="contact-val">
+                  <a href="mailto:coffeeesiimwe@gmail.com"
+                    >coffeeesiimwe@gmail.com</a
+                  >
+                </div>
               </div>
             </div>
             <div class="contact-item">
@@ -461,7 +465,14 @@
               </svg>
               <div>
                 <div class="contact-label">Phone / WhatsApp</div>
-                <div class="contact-val">+256 700 000 000</div>
+                <div class="contact-val">
+                  <a
+                    href="https://wa.me/256761270901"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    >+256 761270901</a
+                  >
+                </div>
               </div>
             </div>
             <div class="contact-item">
@@ -477,14 +488,12 @@
               </svg>
               <div>
                 <div class="contact-label">Roastery</div>
-                <div class="contact-val">
-                  Kasese Road, Rwenzori Region, Uganda
-                </div>
+                <div class="contact-val">Online Shop | Kampala, Uganda</div>
               </div>
             </div>
           </div>
 
-          <form onsubmit="return false;">
+          <!-- <form onsubmit="return false;">
             <div class="field">
               <input type="text" id="cname" placeholder=" " required />
               <label for="cname">Your name</label>
@@ -498,7 +507,7 @@
               <label for="cmsg">Message</label>
             </div>
             <button class="btn btn-dark" type="submit">Send Message</button>
-          </form>
+          </form> -->
         </div>
       </div>
     </section>
@@ -525,8 +534,10 @@
           <div class="footer-col">
             <h4>Connect</h4>
             <a href="#">Instagram</a>
-            <a href="#">TikTok</a>
-            <a href="#">WhatsApp</a>
+            <a href="https://www.tiktok.com/@Coffee.esiimwe"
+              >TikTok · @Coffee.esiimwe</a
+            >
+            <a href="https://wa.me/256761270901">WhatsApp · +256 761270901</a>
           </div>
         </div>
         <div class="footer-bottom">
@@ -535,6 +546,77 @@
         </div>
       </div>
     </footer>
+
+    <style>
+      .checkout-modal {
+        position: fixed;
+        inset: 0;
+        display: none;
+        align-items: center;
+        justify-content: center;
+        z-index: 9999;
+      }
+      .checkout-modal.open {
+        display: flex;
+      }
+      .checkout-overlay {
+        position: absolute;
+        inset: 0;
+        background: rgba(0, 0, 0, 0.6);
+      }
+      .checkout-dialog {
+        position: relative;
+        background: #fff;
+        padding: 20px;
+        max-width: 480px;
+        width: 92%;
+        border-radius: 8px;
+        box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
+        color: #111;
+      }
+      .checkout-dialog h3 {
+        margin: 0 0 12px 0;
+        font-size: 18px;
+      }
+      .order-summary {
+        background: #f8f8f8;
+        padding: 12px;
+        border-radius: 6px;
+        max-height: 220px;
+        overflow: auto;
+        margin-bottom: 12px;
+        white-space: pre-wrap;
+        font-family: inherit;
+      }
+      .checkout-actions {
+        display: flex;
+        gap: 8px;
+        justify-content: flex-end;
+      }
+      .checkout-actions .btn {
+        min-width: 100px;
+        color: #7a4b32;
+      }
+    </style>
+
+    <!-- Checkout modal -->
+    <div id="checkoutModal" class="checkout-modal" aria-hidden="true">
+      <div class="checkout-overlay"></div>
+      <div
+        class="checkout-dialog"
+        role="dialog"
+        aria-modal="true"
+        aria-labelledby="checkoutTitle"
+      >
+        <h3 id="checkoutTitle">Confirm order &amp; send via</h3>
+        <div class="order-summary" aria-live="polite"></div>
+        <div class="checkout-actions">
+          <button id="checkoutWhatsapp" class="btn btn-ghost">WhatsApp</button>
+          <button id="checkoutEmail" class="btn btn-ghost">Email</button>
+          <button id="checkoutCancel" class="btn">Cancel</button>
+        </div>
+      </div>
+    </div>
 
     <script src="script.js"></script>
     <script type="application/ld+json">
