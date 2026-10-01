@@ -259,6 +259,7 @@ input:focus-visible {
   font-style: italic;
   color: var(--gold);
   font-weight: 400;
+  font-size: 0.5em;
 }
 .hero-sub {
   font-size: 15px;

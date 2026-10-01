@@ -78,7 +78,9 @@ document.getElementById("qtyMinus").addEventListener("click", () => {
   }
 });
 document.getElementById("checkoutBtn").addEventListener("click", () => {
-  const productName = document.querySelector(".order-opt.active .name").textContent.trim();
+  const productName = document
+    .querySelector(".order-opt.active .name")
+    .textContent.trim();
   const details = `${productName} x${qty}\nTotal: ${fmt(price * qty)} UGX\n\nPlease confirm availability and provide delivery details (name, address/location, preferred delivery time).\n\nThank you!`;
   const modal = document.getElementById("checkoutModal");
   if (modal) {
@@ -94,18 +96,27 @@ document.getElementById("checkoutBtn").addEventListener("click", () => {
 const checkoutModal = document.getElementById("checkoutModal");
 if (checkoutModal) {
   document.getElementById("checkoutWhatsapp").addEventListener("click", () => {
-    const productName = document.querySelector(".order-opt.active .name").textContent.trim();
+    const productName = document
+      .querySelector(".order-opt.active .name")
+      .textContent.trim();
     const message = `${productName} x${qty}\nTotal: ${fmt(price * qty)} UGX\n\nPlease confirm availability and provide delivery details (name, address/location, preferred delivery time).\n\nThank you!`;
-    const waUrl = "https://wa.me/256761270901?text=" + encodeURIComponent(message);
+    const waUrl =
+      "https://wa.me/256761270901?text=" + encodeURIComponent(message);
     window.open(waUrl, "_blank");
     checkoutModal.classList.remove("open");
   });
 
   document.getElementById("checkoutEmail").addEventListener("click", () => {
-    const productName = document.querySelector(".order-opt.active .name").textContent.trim();
+    const productName = document
+      .querySelector(".order-opt.active .name")
+      .textContent.trim();
     const subject = "Order from Coffee Esiimwe";
     const body = `${productName} x${qty}\nTotal: ${fmt(price * qty)} UGX\n\nPlease confirm availability and provide delivery details (name, address/location, preferred delivery time).\n\nThank you!`;
-    const mailto = "mailto:coffeeesiimwe@gmail.com?subject=" + encodeURIComponent(subject) + "&body=" + encodeURIComponent(body);
+    const mailto =
+      "mailto:coffeeesiimwe@gmail.com?subject=" +
+      encodeURIComponent(subject) +
+      "&body=" +
+      encodeURIComponent(body);
     window.location.href = mailto;
     checkoutModal.classList.remove("open");
   });
@@ -116,7 +127,10 @@ if (checkoutModal) {
 
   // clicking overlay closes modal
   checkoutModal.addEventListener("click", (e) => {
-    if (e.target.classList.contains("checkout-modal") || e.target.classList.contains("checkout-overlay")) {
+    if (
+      e.target.classList.contains("checkout-modal") ||
+      e.target.classList.contains("checkout-overlay")
+    ) {
       checkoutModal.classList.remove("open");
     }
   });
@@ -139,6 +153,8 @@ if (checkoutModal) {
   });
   renderer.setPixelRatio(Math.min(window.devicePixelRatio, 2));
   renderer.setSize(width, height, false);
+  renderer.toneMapping = THREE.ACESFilmicToneMapping;
+  renderer.toneMappingExposure = 0.65;
   if ("outputColorSpace" in renderer) {
     renderer.outputColorSpace = THREE.SRGBColorSpace;
   } else if ("outputEncoding" in renderer) {
@@ -366,8 +382,6 @@ if (checkoutModal) {
     bumpMap: bumpTex,
     bumpScale: 0.012,
     roughnessMap: roughTex,
-    sheen: 1,
-    sheenColor: new THREE.Color(0xb4894f),
   });
   const bean = new THREE.Mesh(geo, mat);
   beanGroup.add(bean);
