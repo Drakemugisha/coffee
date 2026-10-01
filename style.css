@@ -517,6 +517,12 @@ section {
 .products {
   background: var(--cream);
 }
+.process.section-pad {
+  padding-bottom: 80px;
+}
+.products.section-pad {
+  padding-top: 80px;
+}
 .product {
   display: grid;
   grid-template-columns: 1fr 1fr;
@@ -586,6 +592,15 @@ section {
   }
   .product:nth-child(even) .product-media {
     order: 0;
+  }
+}
+
+@media (max-width: 768px) {
+  .process.section-pad {
+    padding-bottom: 50px;
+  }
+  .products.section-pad {
+    padding-top: 50px;
   }
 }
 
